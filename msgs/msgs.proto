@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package msgs;
+
+option go_package = "example.com/go-msgs-grpc;go_msgs_grpc";
+
+service PozoManagement {
+    rpc  GetMontoAcumulado (NewMontoAcumulado) returns (MontoAcumulado) {}
+}
+
+message NewMontoAcumulado {
+
+}
+
+message MontoAcumulado {
+    int32 montoActual = 1;
+}
