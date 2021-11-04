@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	port = ":50051"
+	port = ":50010"
 )
 
 func NewPozoServer(mount int64) *PozoServer {
