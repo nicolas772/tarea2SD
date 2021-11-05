@@ -24,7 +24,6 @@ func crearArchivo() {
 	//Crea el archivo si no existe
 	if os.IsNotExist(err) {
 		var file, err = os.Create(path)
-		fmt.Println("aquiiiii")
 		if existeError(err) {
 			return
 		}
@@ -94,7 +93,6 @@ func (server *PozoServer) GetMontoAcumulado(ctx context.Context, in *pb.NewMonto
 
 func main() {
 	monto_actual := 0
-	var pozo_server *PozoServer = NewPozoServer(int64(monto_actual))
 	crearArchivo()
 
 	//aqui empieza rabbit
@@ -143,6 +141,7 @@ func main() {
 
 	//sub-rutina para informar al lider el monto actual acumulado
 	go func() {
+		var pozo_server *PozoServer = NewPozoServer(int64(monto_actual))
 		if err := pozo_server.Run(); err != nil {
 			log.Fatalf("failed to serve: %v", err)
 		}
