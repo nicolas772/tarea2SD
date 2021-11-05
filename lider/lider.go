@@ -56,7 +56,7 @@ func main() {
 	)
 	failOnError(err, "Failed to declare a queue")
 
-	body := "Jugador 1 Ronda 1 600000000"
+	body := "Jugador 1 Ronda 1" //este es el mensaje que se envia por rabbit
 	err = ch.Publish(
 		"",     // exchange
 		q.Name, // routing key
