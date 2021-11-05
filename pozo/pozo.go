@@ -15,7 +15,7 @@ import (
 
 const (
 	port = ":50010"
-	path = "/eliminados.txt"
+	path = "./eliminados.txt"
 )
 
 func crearArchivo() {
@@ -24,6 +24,7 @@ func crearArchivo() {
 	//Crea el archivo si no existe
 	if os.IsNotExist(err) {
 		var file, err = os.Create(path)
+		fmt.Println("aquiiiii")
 		if existeError(err) {
 			return
 		}
