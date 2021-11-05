@@ -92,7 +92,7 @@ func (server *PozoServer) GetMontoAcumulado(ctx context.Context, in *pb.NewMonto
 }
 
 func main() {
-	monto_actual := 0
+	var pozo_server *PozoServer = NewPozoServer(0)
 	crearArchivo()
 
 	//aqui empieza rabbit
@@ -132,8 +132,9 @@ func main() {
 	go func() {
 		for d := range msgs {
 			log.Printf("Nuevo Jugador Eliminado: %s", d.Body)
-			monto_actual += 100000000
-			texto := string(d.Body) + " " + strconv.Itoa(monto_actual)
+			pozo_server.monto += 100000000
+			nuevo_monto := pozo_server.monto
+			texto := string(d.Body) + " " + strconv.Itoa(int(nuevo_monto))
 			escribeArchivo(texto)
 		}
 	}()
@@ -141,7 +142,6 @@ func main() {
 
 	//sub-rutina para informar al lider el monto actual acumulado
 	go func() {
-		var pozo_server *PozoServer = NewPozoServer(int64(monto_actual))
 		if err := pozo_server.Run(); err != nil {
 			log.Fatalf("failed to serve: %v", err)
 		}
