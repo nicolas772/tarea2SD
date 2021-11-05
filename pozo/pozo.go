@@ -39,7 +39,12 @@ func escribeArchivo(texto string) {
 	}
 	defer file.Close()
 	// Escribe algo de texto linea por linea
-	_, err = file.WriteString(texto + "\n")
+	dat, err := os.ReadFile(path)
+	if err != nil {
+		panic(err)
+	}
+	_, err = file.WriteString(string(dat) + texto + "\n")
+
 	if existeError(err) {
 		return
 	}
