@@ -21,41 +21,21 @@ const (
 
 func crearArchivo() {
 	//Verifica que el archivo existe
-	var _, err = os.Stat(path)
+	var _, _ = os.Stat(path)
 	//Crea el archivo si no existe
-	if os.IsNotExist(err) {
-		var file, err = os.Create(path)
-		if existeError(err) {
-			return
-		}
-		defer file.Close()
-	} else {
-		borrarContenido()
-	}
-	fmt.Println("File Created Successfully", path)
-}
-func borrarContenido() {
-	// Abre archivo usando permisos READ & WRITE
-	var file, err = os.OpenFile(path, os.O_RDWR, 0666)
+	//if os.IsNotExist(err) {
+	//	var file, err = os.Create(path)
+	//	if existeError(err) {
+	//		return
+	//	}
+	//	defer file.Close()
+	//}
+	var file, err = os.Create(path)
 	if existeError(err) {
 		return
 	}
 	defer file.Close()
-	// Escribe algo de texto linea por linea
-	if err != nil {
-		panic(err)
-	}
-	_, err = file.WriteString("")
-
-	if existeError(err) {
-		return
-	}
-	// Salva los cambios
-	err = file.Sync()
-	if existeError(err) {
-		return
-	}
-	fmt.Println("Archivo vaciado exitosamente")
+	fmt.Println("File Created Successfully", path)
 }
 func escribeArchivo(texto string) {
 	// Abre archivo usando permisos READ & WRITE
