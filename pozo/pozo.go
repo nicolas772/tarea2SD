@@ -21,15 +21,6 @@ const (
 
 func crearArchivo() {
 	//Verifica que el archivo existe
-	var _, _ = os.Stat(path)
-	//Crea el archivo si no existe
-	//if os.IsNotExist(err) {
-	//	var file, err = os.Create(path)
-	//	if existeError(err) {
-	//		return
-	//	}
-	//	defer file.Close()
-	//}
 	var file, err = os.Create(path)
 	if existeError(err) {
 		return
