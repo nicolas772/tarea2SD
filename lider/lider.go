@@ -21,6 +21,8 @@ func failOnError(err error, msg string) {
 }
 
 func main() {
+
+	//Conexion con Pozo gRPC
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
@@ -36,7 +38,7 @@ func main() {
 	}
 	log.Printf("monto acumulado: %d", r.GetMontoActual())
 
-	//aqui comienza Rabbit
+	//Conexion con Pozo Rabbitmq
 
 	conn_pozo, err := amqp.Dial("amqp://admin:test@10.6.40.194:5672/qa1")
 	failOnError(err, "Failed to connect to RabbitMQ")
