@@ -33,7 +33,7 @@ func crearArchivo() {
 }
 func escribeArchivo(texto string) {
 	// Abre archivo usando permisos READ & WRITE
-	var file, err = os.OpenFile(path, os.O_RDWR, 0644)
+	var file, err = os.OpenFile(path, os.O_RDWR, 0666)
 	if existeError(err) {
 		return
 	}
