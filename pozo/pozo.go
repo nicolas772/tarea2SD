@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net"
 	"os"
@@ -39,7 +40,7 @@ func escribeArchivo(texto string) {
 	}
 	defer file.Close()
 	// Escribe algo de texto linea por linea
-	dat, err := os.ReadFile(path)
+	dat, err := ioutil.ReadFile(path)
 	if err != nil {
 		panic(err)
 	}
