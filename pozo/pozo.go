@@ -29,8 +29,33 @@ func crearArchivo() {
 			return
 		}
 		defer file.Close()
+	} else {
+		borrarContenido()
 	}
 	fmt.Println("File Created Successfully", path)
+}
+func borrarContenido() {
+	// Abre archivo usando permisos READ & WRITE
+	var file, err = os.OpenFile(path, os.O_RDWR, 0666)
+	if existeError(err) {
+		return
+	}
+	defer file.Close()
+	// Escribe algo de texto linea por linea
+	if err != nil {
+		panic(err)
+	}
+	_, err = file.WriteString("")
+
+	if existeError(err) {
+		return
+	}
+	// Salva los cambios
+	err = file.Sync()
+	if existeError(err) {
+		return
+	}
+	fmt.Println("Archivo vaciado exitosamente")
 }
 func escribeArchivo(texto string) {
 	// Abre archivo usando permisos READ & WRITE
