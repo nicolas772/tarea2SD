@@ -121,7 +121,8 @@ func main() {
 				})
 			failOnError(err, "Failed to publish a message")
 
-		} else {
+		}
+		if eleccion != "1" && eleccion != "2" {
 			log.Printf("Hasta Pronto!")
 			flag = 0
 		}
