@@ -89,8 +89,6 @@ func main() {
 	}
 	defer conn.Close()
 	c := pb.NewPozoManagementClient(conn)
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
 
 	//Programa
 
@@ -100,6 +98,8 @@ func main() {
 		eleccion := printmenuInicial()
 
 		if eleccion == "1" {
+			ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+			defer cancel()
 			r, err := c.GetMontoAcumulado(ctx, &pb.NewMontoAcumulado{})
 			if err != nil {
 				log.Fatalf("No se pudo obtener el monto acumulado: %v", err)
